@@ -78,14 +78,14 @@ doctest は、Python の標準モジュール、 doctest_ によるテストで�
 .. admonition:: **docstring** とは?
 
     docstring の詳しい説明 (と、効果的な docstring の書き方) は、
-    :pep:`257` (訳注: PEP 257 の和訳は 
+    :pep:`257` (訳注: PEP 257 の和訳は
     http://www.python.jp/doc/contrib/peps/pep-0257.txt にあります) に書かれ
     ています:
-        
+
         docstring とは、モジュールや関数、クラス、メソッド定義のブロック中
         の先頭に置かれた文字列リテラルです。 docstring を定義すると、オブジェ
         クトの ``__doc__`` という特殊な属性になります。
-        
+
 
     例えば、下の関数には、関数の説明の入った docstring があります::
 
@@ -94,7 +94,7 @@ doctest は、Python の標準モジュール、 doctest_ によるテストで�
             return num + 2
 
     テストはそれ自体素晴らしいドキュメントになることも多いので、テストをそ
-    のまま docstring に入れておけば、ドキュメント化とコードのテストの 
+    のまま docstring に入れておけば、ドキュメント化とコードのテストの
     *両方を* 効率的に行えます。
 
 テストランナは、 Django アプリケーションの中の以下のファイルから doctest を
@@ -114,25 +114,25 @@ doctest は、Python の標準モジュール、 doctest_ によるテストで�
     # models.py
 
     from django.db import models
-    
+
     class Animal(models.Model):
         """
         鳴き声から動物を調べるテスト
-        
+
         # 動物インスタンスを生成する
         >>> lion = Animal.objects.create(name="lion", sound="roar")
         >>> cat = Animal.objects.create(name="cat", sound="meow")
-        
+
         # speak() を呼び出す
         >>> lion.speak()
         'The lion says "roar"'
         >>> cat.speak()
         'The cat says "meow"'
         """
-        
+
         name = models.CharField(max_length=20)
         sound = models.CharField(max_length=20)
-        
+
         def speak(self):
             return 'The %s says "%s"' % (self.name, self.sound)
 
@@ -182,17 +182,17 @@ doctest と同様、 Django のテストランナは、以下の二つの場所�
 
     import unittest
     from myapp.models import Animal
-    
+
     class AnimalTestCase(unittest.TestCase):
 
         def setUp(self):
             self.lion = Animal.objects.create(name="lion", sound="roar")
             self.cat = Animal.objects.create(name="cat", sound="meow")
-        
+
         def testSpeaking(self):
             self.assertEquals(self.lion.speak(), 'The lion says "roar"')
             self.assertEquals(self.cat.speak(), 'The cat says "meow"')
-            
+
 :ref:`テストを実行する <running-tests>` と、テストユーティリティはデフォル
 トの動作として、 ``models.py`` と ``tests.py`` に入っている全てのテストケー
 ス (つまり ``unittest.TestCase`` のサブクラス) を捜し出し、そこからテストス
@@ -201,7 +201,7 @@ doctest と同様、 Django のテストランナは、以下の二つの場所�
 開発バージョンの Django には、あるモジュールのテストスイートを定義する方法
 をもう一つ提供しています:  ``models.py`` や ``tests.py`` で ``suite()`` メ
 ソッドを定義している場合、 Django のテストランナはこのメソッドを使ってテス
-トスイートを構築します。この仕様は、ユニットテストにおいて 
+トスイートを構築します。この仕様は、ユニットテストにおいて
 `おすすめのテストスイート構築方法`_ に従っています。複雑なテストスイー
 トの構築方法についての詳細は Python のドキュメントを参照してください。
 
@@ -268,7 +268,7 @@ Django は標準的な Python テストフレームワークの両方をサポ�
 リケーションの名前を追加します。例えば、 :setting:`INSTALLED_APPS` に
 ``myproject.polls`` と ``myproject.animals`` というアプリケーションが入って
 おり、 animals の単体テストを実行したいだけなら、以下のようにします::
- 
+
     $ ./manage.py test animals
 
 ``animals`` ではなく、 ``myproject.animals`` なので注意してください。
@@ -289,7 +289,7 @@ Django は標準的な Python テストフレームワークの両方をサポ�
 
 テストデータベース
 -------------------
- 
+
 データベースを必要とするテスト (モデルのテスト) に、「本番の (実運用環境の)」
 データベースは必要ありません。テストの際には、空の別のデータベースが作成さ
 れます。
@@ -316,7 +316,7 @@ Django は標準的な Python テストフレームワークの両方をサポ�
 テスト用データベースの文字セットエンコーディング設定を細かく調整したいのな
 ら、 :setting:`TEST_DATABASE_CHARSET` 設定を使ってください。 MySQL を使って
 いるなら、 :setting:`TEST_DATABASE_COLLATION` でテストデータベースで使うコ
-レーション(collation) を指定できます。これらの設定については、 
+レーション(collation) を指定できます。これらの設定については、
 :ref:`settings ファイルのドキュメント<ref-settings>` を参照してください。
 
 その他のテスト条件
@@ -421,7 +421,7 @@ Python のクラスです。テストクライアントを使うと、ビュー�
 
   * Twill や Selenium は、 *レンダリング済みの* HTML や、 JavaScript の機能
     のような Web ページの *ビヘイビア* のテストに使ってください。
-   
+
 網羅的なテストスイートでは、両方のタイプのテストを組み合わせて使うはずです。
 
 .. _Twill: http://twill.idyll.org/
@@ -517,7 +517,7 @@ Python のクラスです。テストクライアントを使うと、ビュー�
             ...       HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
         ...will send the HTTP header ``HTTP_X_REQUESTED_WITH`` to the
-        details	view, which is a good way to test code paths that use the
+        details  view, which is a good way to test code paths that use the
         :meth:`django.http.HttpRequest.is_ajax()` method.
 
         .. versionadded:: 1.1
@@ -566,8 +566,8 @@ Python のクラスです。テストクライアントを使うと、ビュー�
         を伴います。
 
         ``content_type`` を指定した場合 (例えば XML ペイロードの場合には
-	``text/xml``)、引数 ``data`` の中身は POST リクエストそのままで送信
-	され、 ``Content-Type`` ヘッダに ``content_type`` の値を使います。
+  ``text/xml``)、引数 ``data`` の中身は POST リクエストそのままで送信
+  され、 ``Content-Type`` ヘッダに ``content_type`` の値を使います。
 
         ``content_type`` を指定しなければ、 ``data`` の中身は
         ``multipart/form-data`` で送信されます。この場合、 ``data`` の中の
@@ -575,9 +575,9 @@ Python のクラスです。テストクライアントを使うと、ビュー�
         タのペイロード生成に使われます。
 
         あるキーに対して複数の値を提出 (submit) する場合 (例えば、
-	``<select multiple>`` の選択結果を指定する場合など) は、キーに対す
-	る値をリストやタプルにしてください。例えば、``choices`` という名前
-	のフィールドから 3 つの行を選択して提出したければ::
+  ``<select multiple>`` の選択結果を指定する場合など) は、キーに対す
+  る値をリストやタプルにしてください。例えば、``choices`` という名前
+  のフィールドから 3 つの行を選択して提出したければ::
 
             {'choices': ('a', 'b', 'd')}
 
@@ -678,12 +678,12 @@ Python のクラスです。テストクライアントを使うと、ビュー�
         キーとセッションデータを持つようになり、テスト対象のビューのうち、
         ログインの必要なテストをパスできるようになります。
 
-        ``credentials`` 引数の形式は、使っている 
-	:ref:`認証バックエンド <authentication-backends>` によって変わりま
-	す (認証バックエンドは :setting:`AUTHENTICATION_BACKENDS` で設定し
-	ます)。	Django が提供している標準の認証バックエンド
-	(``ModelBackend``) を使う場合、 ``credentials`` にはユーザのユーザ
-	名とパスワードをキーワー引数で指定します::
+        ``credentials`` 引数の形式は、使っている
+  :ref:`認証バックエンド <authentication-backends>` によって変わりま
+  す (認証バックエンドは :setting:`AUTHENTICATION_BACKENDS` で設定し
+  ます)。  Django が提供している標準の認証バックエンド
+  (``ModelBackend``) を使う場合、 ``credentials`` にはユーザのユーザ
+  名とパスワードをキーワー引数で指定します::
 
             >>> c = Client()
             >>> c.login(username='fred', password='secret')
@@ -703,7 +703,7 @@ Python のクラスです。テストクライアントを使うと、ビュー�
         環境で使えるユーザはテスト環境では使えないのです。テストスイートの一
         環として、手動で (Django のモデル API を使って) ユーザを作成するか、
         フィクスチャでユーザを登録してください。
-	Remember that if you want your test user to have a password,
+  Remember that if you want your test user to have a password,
         you can't set the user's password by setting the password attribute
         directly -- you must use the
         :meth:`~django.contrib.auth.models.User.set_password()` function to
@@ -750,7 +750,7 @@ Python のクラスです。テストクライアントを使うと、ビュー�
 
         複数のテンプレートを使ってレンダリングを行った場合、 ``context`` は
         ``Context`` オブジェクトをレンダリングで使った順に並べたリストです。
- 
+
         .. versionadded:: 1.1
 
         Regardless of the number of templates used during rendering, you can
@@ -764,7 +764,7 @@ Python のクラスです。テストクライアントを使うと、ビュー�
     .. attribute:: request
 
         レスポンスを得るために使用したリクエストデータです。
- 
+
     .. attribute:: status_code
 
         レスポンスの HTTP 状態コードです。全ての HTTP 状態コードのリストは
@@ -777,10 +777,10 @@ Python のクラスです。テストクライアントを使うと、ビュー�
         トのファイル名を ``template.name`` で調べられます
         (``'admin/index.html'`` のような形式の文字列です)。
 
-	複数のテンプレートをレンダリングしている場合 (例えば
-	:ref:`テンプレートの継承 <template-inheritance>` を使っている場合)、
-	``template`` はレンダリング順に並んだ  ``Template`` オブジェクトの
-	リストです。
+  複数のテンプレートをレンダリングしている場合 (例えば
+  :ref:`テンプレートの継承 <template-inheritance>` を使っている場合)、
+  ``template`` はレンダリング順に並んだ  ``Template`` オブジェクトの
+  リストです。
 
 また、レスポンスオブジェクトを辞書のように扱っても、HTTPヘッダに設定された
 値にアクセスできます。例えば、レスポンスのコンテンツタイプは
@@ -825,7 +825,7 @@ Python のクラスです。テストクライアントを使うと、ビュー�
 
 .. attribute:: Client.session
 
-    セッション情報の入った辞書ライクなオブジェクトです。詳しくは 
+    セッション情報の入った辞書ライクなオブジェクトです。詳しくは
     :ref:`セッションのドキュメント <topics-http-sessions>` を参照してくださ
     い。
 
@@ -868,7 +868,7 @@ Django provides an extension of this base class:
 
 このクラスは、Web サイトのテスト時に便利な機能をいくつか追加しています。
 
-通常のユニットテストを ``unittest.TestCase`` から Django 独自の 
+通常のユニットテストを ``unittest.TestCase`` から Django 独自の
 ``TestCase`` に移行するのは簡単で、単にベースクラスを ``unittest.TestCase``
 から ``django.test.TestCase`` に変更するだけです。 ``django.test.TestCase``
 は、標準の Python ユニットテスト機能はそのままに、さらに便利な機能を提供し
@@ -971,7 +971,7 @@ by truncating tables and reloading initial data.
 
 データベースがバックにあるウェブサイトのテストで、データベース上に何もデー
 タが入っていなければあまり意味はありません。データベースにテストデータを入
-れやすくするために、 Django の独自 ``TestCase`` クラスは 
+れやすくするために、 Django の独自 ``TestCase`` クラスは
 **フィクスチャ (fixture)** の読み込み機能を提供しています。
 
 フィクスチャとは、一群のデータを Django がデータベースに取り込める形式にし
@@ -981,7 +981,7 @@ by truncating tables and reloading initial data.
 
 最も素直なフィクスチャの作成方法は、 ``manage.py dumpdata`` コマンドを使う
 というものです。 ``dumpdata`` を使うにはデータベースに既に何らかのデータが
-入っていなければなりません。詳しくは 
+入っていなければなりません。詳しくは
 :djadmin:`dumpdata のドキュメント <dumpdata>` を参照してください。
 
 .. note::
@@ -989,11 +989,11 @@ by truncating tables and reloading initial data.
     クスチャは使われています。最初に ``syncdb`` を実行したときに、 Django
     は ``initial_data`` という名前のフィクスチャをインストールします。この
     メカニズムを使えば、 (カテゴリのデフォルトセットのような) 新たなデータ
-    セットをデータベースに組み込めます。 
+    セットをデータベースに組み込めます。
 
-    ``initial_data`` 以外の名前のフィクスチャは、 
+    ``initial_data`` 以外の名前のフィクスチャは、
     ``django-admin.py loaddata`` で手動で組み込めます。
-    
+
 単体テストでフィクスチャを使う場合、フィクスチャを作成して Django のプロジェ
 クトディレクトリ下に置き、 ``dhango.test.TestCase`` のサブクラスの
 ``fixtures`` クラス属性を指定します::
@@ -1018,7 +1018,7 @@ by truncating tables and reloading initial data.
   * 次に、テストケースクラスに指定した全てのフィクスチャをインストールしま
     す。上の例では、 ``mammals`` という名前の JSON フィクスチャと、
     ``birds`` という名前のフィクスチャがインストールされます。フィクスチャ
-    の定義とインストールに関する詳細は 
+    の定義とインストールに関する詳細は
     :djadmin:`loaddata のドキュメント <loaddata>`
     を参照してください。
 
@@ -1046,7 +1046,7 @@ URLconf の設定
 使い方を示しましょう::
 
     from django.test import TestCase
-    
+
     class TestMyViews(TestCase):
         urls = 'myapp.test_urls'
 
@@ -1137,14 +1137,14 @@ Django 独自の ``TestCase`` クラスを使うと、テストランナは各�
 
 .. versionadded:: 1.0
 
-ビューが :ref:`Django のメールサービス <topics-email>` を使っている場合、
+ビューが :ref:`Django のメールサービス </topics/email>` を使っている場合、
 ビューをテストするたびにメールが送信されてほしくはないでしょう。 Django の
 テストランナは、テスト中に Django から送信されたすべてのメールをダミーの送
 信箱に振り分けます。これによって、送信したメールの数から、各メールのメッセー
 ジに至るまで、メール送信機能のすべてを (実際にメールを送らずに) テストでき
 ます。
 
-Django は、テストフレームワークを初期化する際、通常の 
+Django は、テストフレームワークを初期化する際、通常の
 :class:`~django.core.mail.SMTPConnection` クラスをダミーの SMTPConnection
 実装に切替えます (Django の外部のメール送信機構、例えば Django を動かしてい
 るホストで動いているメールサーバには一切影響を及ぼしません)。
@@ -1263,11 +1263,11 @@ TestCase 内の各テストケースの開始時点で抹消されます。手�
     スを削除してよいか尋ねるといった使い方です。 ``interactive`` を
     ``False`` にする場合、テストスイートは手動操作なしで実行できねばなりま
     せん。
-  
+
     ``extra_tests`` には、このテストランナに追加で実行させたい ``TestCase``
     インスタンスを指定します。 ``extra_tests`` を指定すると、
     ``module_list`` から発見したテストに加えて、指定したテストを実行します。
-    
+
     このメソッドは失敗したテストの数を返さねばなりません。
 
 テスト用のユーティリティ
@@ -1325,5 +1325,3 @@ TestCase 内の各テストケースの開始時点で抹消されます。手�
     ``old_database_name`` に指定したデータベース名に戻します。
 
     ``verbosity`` は ``run_tests()`` の同名の引数と同じ意味です。
-
-
