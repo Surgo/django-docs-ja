@@ -566,8 +566,8 @@ Python のクラスです。テストクライアントを使うと、ビュー�
         を伴います。
 
         ``content_type`` を指定した場合 (例えば XML ペイロードの場合には
-  ``text/xml``)、引数 ``data`` の中身は POST リクエストそのままで送信
-  され、 ``Content-Type`` ヘッダに ``content_type`` の値を使います。
+        ``text/xml``)、引数 ``data`` の中身は POST リクエストそのままで送信
+        され、 ``Content-Type`` ヘッダに ``content_type`` の値を使います。
 
         ``content_type`` を指定しなければ、 ``data`` の中身は
         ``multipart/form-data`` で送信されます。この場合、 ``data`` の中の
@@ -575,9 +575,9 @@ Python のクラスです。テストクライアントを使うと、ビュー�
         タのペイロード生成に使われます。
 
         あるキーに対して複数の値を提出 (submit) する場合 (例えば、
-  ``<select multiple>`` の選択結果を指定する場合など) は、キーに対す
-  る値をリストやタプルにしてください。例えば、``choices`` という名前
-  のフィールドから 3 つの行を選択して提出したければ::
+        ``<select multiple>`` の選択結果を指定する場合など) は、キーに対す
+        る値をリストやタプルにしてください。例えば、``choices`` という名前
+        のフィールドから 3 つの行を選択して提出したければ::
 
             {'choices': ('a', 'b', 'd')}
 
@@ -679,11 +679,11 @@ Python のクラスです。テストクライアントを使うと、ビュー�
         ログインの必要なテストをパスできるようになります。
 
         ``credentials`` 引数の形式は、使っている
-  :ref:`認証バックエンド <authentication-backends>` によって変わりま
-  す (認証バックエンドは :setting:`AUTHENTICATION_BACKENDS` で設定し
-  ます)。  Django が提供している標準の認証バックエンド
-  (``ModelBackend``) を使う場合、 ``credentials`` にはユーザのユーザ
-  名とパスワードをキーワー引数で指定します::
+        :ref:`認証バックエンド <authentication-backends>` によって変わりま
+        す (認証バックエンドは :setting:`AUTHENTICATION_BACKENDS` で設定し
+        ます)。  Django が提供している標準の認証バックエンド
+        (``ModelBackend``) を使う場合、 ``credentials`` にはユーザのユーザ
+        名とパスワードをキーワー引数で指定します::
 
             >>> c = Client()
             >>> c.login(username='fred', password='secret')
@@ -703,7 +703,7 @@ Python のクラスです。テストクライアントを使うと、ビュー�
         環境で使えるユーザはテスト環境では使えないのです。テストスイートの一
         環として、手動で (Django のモデル API を使って) ユーザを作成するか、
         フィクスチャでユーザを登録してください。
-  Remember that if you want your test user to have a password,
+        Remember that if you want your test user to have a password,
         you can't set the user's password by setting the password attribute
         directly -- you must use the
         :meth:`~django.contrib.auth.models.User.set_password()` function to
